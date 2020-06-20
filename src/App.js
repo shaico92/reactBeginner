@@ -6,6 +6,11 @@ import Person from './Person/Person';
 
 
 const App = props=>  {
+  const lol = {
+    border : '1px solid red',
+    padding : '8px',
+    cursor: 'pointer'   
+     }
   const [ personsProps, setPersonsState ] = useState({
     changed : false,
   persons: [
@@ -20,13 +25,28 @@ const App = props=>  {
 
   });
 
-const switchnNmeHandler = ()=>{
+const nameChangedHandler = (event)=>{
+      setPersonsState({
+        changed : false,
+        persons: [
+            {name: 'makore', age :23},
+            {name: event.target.value, age :21},
+            {name: 'sha2', age :24},
+            {name: 'sha3', age :26}
+      
+        ]     
+      })     
+}
+
+
+
+const switchnNmeHandler = (newName)=>{
       if (personsProps.changed===false) {
         setPersonsState({
           
           changed : true,
           persons: [
-          {name: 'Newmakore', age :923},
+          {name: newName, age :923},
           {name: 'Newsha1', age :218},
           {name: 'Newsha2', age :244},
           {name: 'Newsha3', age :261}
@@ -40,7 +60,7 @@ const switchnNmeHandler = ()=>{
 
           changed : false,
           persons: [
-              {name: 'makore', age :23},
+              {name: newName, age :23},
               {name: 'sha1', age :21},
               {name: 'sha2', age :24},
               {name: 'sha3', age :26}
@@ -72,11 +92,27 @@ const switchnNmeHandler = ()=>{
 
   return (
     <div className="App">
-      <button onClick={switchnNmeHandler}>Switch Name</button>
-<Person name= {personsProps.persons[0].name} age ={personsProps.persons[0].age}/>
-<Person name= {personsProps.persons[1].name} age ={personsProps.persons[1].age}/>
-<Person name= {personsProps.persons[2].name} age ={personsProps.persons[2].age}/>
-<Person name= {personsProps.persons[3].name} age ={personsProps.persons[3].age}>this is just a random content</Person>
+      <button style={lol} 
+       onClick={switchnNmeHandler.bind(this,'switcharoo')}>Switch Name</button>
+<Person 
+name= {personsProps.persons[0].name} 
+age ={personsProps.persons[0].age}
+click = {switchnNmeHandler.bind(this, 'stamShem')}/>
+<Person 
+name= {personsProps.persons[1].name} 
+age ={personsProps.persons[1].age}
+click = {switchnNmeHandler.bind(this, 'stamShemss')}
+changed ={nameChangedHandler}/>
+<Person
+
+
+name= {personsProps.persons[2].name} 
+age ={personsProps.persons[2].age}
+/>
+<Person 
+name= {personsProps.persons[3].name} 
+age ={personsProps.persons[3].age}
+>this is just a random content</Person>
 
       </div>
   );
