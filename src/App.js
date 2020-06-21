@@ -1,13 +1,14 @@
-import React,{useState} from 'react';
+import React,{useState, Component} from 'react';
 //import logo from './logo.svg';
 import './App.css';
 
 import Person from './Person/Person';
 
 
-const App = props=>  {
+class App extends Component  {
+  /*
   const [ personsProps, setPersonsState ] = useState({
-    changed : false,
+    showPersons : false,
   persons: [
       {name: 'makore', age :23},
       {name: 'sha1', age :21},
@@ -19,8 +20,26 @@ const App = props=>  {
 
 
   });
+*/
 
-const switchnNmeHandler = ()=>{
+state = {
+  showPersons : false,
+persons: [
+    {name: 'makore', age :23},
+    {name: 'sha1', age :21},
+    {name: 'sha2', age :24},
+    {name: 'sha3', age :26}
+
+]
+
+
+
+}
+
+
+
+/*
+ switchnNmeHandler = ()=>{
       if (personsProps.changed===false) {
         setPersonsState({
           
@@ -61,6 +80,13 @@ const switchnNmeHandler = ()=>{
     
  
     }
+*/
+  togglePersonsHandler = ()=>{
+     
+      console.log('kodkads');
+      const doesShow = this.state.showPersons;
+         this.setState({showPersons : !doesShow})
+    }
   
  
  
@@ -68,19 +94,26 @@ const switchnNmeHandler = ()=>{
  
    
  
-
-
+render()
+{
   return (
     <div className="App">
-      <button onClick={switchnNmeHandler}>Switch Name</button>
-<Person name= {personsProps.persons[0].name} age ={personsProps.persons[0].age}/>
-<Person name= {personsProps.persons[1].name} age ={personsProps.persons[1].age}/>
-<Person name= {personsProps.persons[2].name} age ={personsProps.persons[2].age}/>
-<Person name= {personsProps.persons[3].name} age ={personsProps.persons[3].age}>this is just a random content</Person>
+      <button onClick={this.togglePersonsHandler}>show all</button>
 
+      {/*checks if show is true else show null*/}
+      { this.state.showPersons ?
+        
+      
+      <div>
+<Person  name= {this.state.persons[0].name} age ={this.state.persons[0].age}/>
+<Person name= {this.state.persons[1].name} age ={this.state.persons[1].age}/>
+<Person name= {this.state.persons[2].name} age ={this.state.persons[2].age}/>
+<Person name= {this.state.persons[3].name} age ={this.state.persons[3].age}>this is just a random content</Person>
+      </div> : null
+      }
       </div>
   );
-
+    }
 }
 
 export default App;
