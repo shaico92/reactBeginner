@@ -5,9 +5,9 @@ const Person = (props)=>{
 
     return(
 
-      <div>
+      <div style={props.style} onClick={props.click}>
 
-    <p> i am {props.name} and i am {props.age} years old</p>
+    <p >  i am {props.name} and i  am {props.age} years old</p>
 
     <p>{props.children}</p>
 

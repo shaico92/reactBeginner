@@ -81,9 +81,21 @@ persons: [
  
     }
 */
+
+
+deletePersonHandler = (indexP)=>{
+
+  const persons = [...this.state.persons]
+  
+  persons.splice(indexP,1);
+  this.setState({persons: persons});
+
+  
+  ;
+ }
   togglePersonsHandler = ()=>{
      
-      console.log('kodkads');
+      
       const doesShow = this.state.showPersons;
          this.setState({showPersons : !doesShow})
     }
@@ -96,21 +108,45 @@ persons: [
  
 render()
 {
+  const style = {
+    backgroundColor : 'white',
+    font: 'inherit',
+    
+    boxShadow: '0 1px 2px', 
+    border : '1px solid blue',
+    padding : '8px',
+    marginLeft : '25%',
+    marginTop : '5%',
+    width : '50%',
+    cursor: 'pointer'
+  }
+  let persons = null;
+  if (this.state.showPersons) {
+    persons = (
+<div>
+  {this.state.persons.map((person,index)=>{
+    return <Person style={style}
+    click={()=>this.deletePersonHandler(index)}
+      name= {person.name}
+       age ={person.age}
+       />
+  })}
+
+      </div> 
+    );
+    
+  }
   return (
     <div className="App">
-      <button onClick={this.togglePersonsHandler}>show all</button>
 
-      {/*checks if show is true else show null*/}
-      { this.state.showPersons ?
-        
-      
       <div>
-<Person  name= {this.state.persons[0].name} age ={this.state.persons[0].age}/>
-<Person name= {this.state.persons[1].name} age ={this.state.persons[1].age}/>
-<Person name= {this.state.persons[2].name} age ={this.state.persons[2].age}/>
-<Person name= {this.state.persons[3].name} age ={this.state.persons[3].age}>this is just a random content</Person>
-      </div> : null
-      }
+        <h1>Hi im React App</h1>
+      <button onClick={this.togglePersonsHandler}>show all</button>
+      {/*renders the person var*/}
+      {persons}
+      </div>
+      
+        
       </div>
   );
     }
