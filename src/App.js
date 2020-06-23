@@ -6,29 +6,15 @@ import Person from './Person/Person';
 
 
 class App extends Component  {
-  /*
-  const [ personsProps, setPersonsState ] = useState({
-    showPersons : false,
-  persons: [
-      {name: 'makore', age :23},
-      {name: 'sha1', age :21},
-      {name: 'sha2', age :24},
-      {name: 'sha3', age :26}
-
-  ]
-
-
-
-  });
-*/
+  
 
 state = {
   showPersons : false,
 persons: [
-    {name: 'makore', age :23},
-    {name: 'sha1', age :21},
-    {name: 'sha2', age :24},
-    {name: 'sha3', age :26}
+    {id : 'segma1',name: 'makore', age :23},
+    {id : 'segma2',name: 'sha1', age :21},
+    {id : 'segma3',name: 'sha2', age :24},
+    {id : 'segma4',name: 'sha3', age :26}
 
 ]
 
@@ -37,50 +23,6 @@ persons: [
 }
 
 
-
-/*
- switchnNmeHandler = ()=>{
-      if (personsProps.changed===false) {
-        setPersonsState({
-          
-          changed : true,
-          persons: [
-          {name: 'Newmakore', age :923},
-          {name: 'Newsha1', age :218},
-          {name: 'Newsha2', age :244},
-          {name: 'Newsha3', age :261}
-        
-        ]
-
-
-        })
-      } else {
-        setPersonsState({
-
-          changed : false,
-          persons: [
-              {name: 'makore', age :23},
-              {name: 'sha1', age :21},
-              {name: 'sha2', age :24},
-              {name: 'sha3', age :26}
-        
-          ]
-
-
-
-
-
-
-          //
-          }) 
-      }
-  
-  // dont do this!!!! this.state.persons[0].name= 'newName';
-       
-    
- 
-    }
-*/
 
 
 deletePersonHandler = (indexP)=>{
@@ -100,7 +42,27 @@ deletePersonHandler = (indexP)=>{
          this.setState({showPersons : !doesShow})
     }
   
- 
+    nameChangedHandler = (event, id)=> {
+          const personIndex = this.state.persons.findIndex(p=>{
+            return p.id ===id;
+            
+          });
+
+          const person = {
+            ...this.state.persons[personIndex]
+          };
+
+          //this is the same as lines 51-53
+          //const person = Object.assign({},this.state.persons[personIndex])
+
+          person.name = event.target.value;
+
+          const persons = [...this.state.persons];
+          persons[personIndex]=person;
+
+          this.setState({persons: persons});
+
+    }
  
  
  
@@ -129,6 +91,8 @@ render()
     click={()=>this.deletePersonHandler(index)}
       name= {person.name}
        age ={person.age}
+       key = {person.id}
+       changed={(event)=>this.nameChangedHandler(event, person.id)}
        />
   })}
 
@@ -155,53 +119,3 @@ render()
 export default App;
 
 
-
-  /*
-state = {
-  changed : false,
-  persons: [
-      {name: 'makore', age :23},
-      {name: 'sha1', age :21},
-      {name: 'sha2', age :24},
-      {name: 'sha3', age :26}
-
-  ]
-
-
-}
-
-
-
-switchnNmeHandler = ()=>{
-  
-  
- // dont do this!!!! this.state.persons[0].name= 'newName';
-  if (this.state.changed===false) {
-    this.setState({
-      changed : true,
-      persons: [
-      {name: 'Newmakore', age :23},
-      {name: 'Newsha1', age :21},
-      {name: 'Newsha2', age :24},
-      {name: 'Newsha3', age :26}
-    
-    ]})   
-  } else {
-    this.setState({
-      changed : false,
-      
-      persons: [
-      {name: 'makore', age :23},
-      {name: 'sha1', age :21},
-      {name: 'sha2', age :24},
-      {name: 'sha3', age :26}
-
-  ] })}
- 
-
-
-
-
-  
-}
-*/
