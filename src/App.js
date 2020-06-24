@@ -2,75 +2,34 @@ import React,{useState, Component} from 'react';
 //import logo from './logo.svg';
 import './App.css';
 
-import Person from './Person/Person';
+import Char from './Char/Char';
+import Validation from './Validation/Validation';
 
 
 class App extends Component  {
+        
+  state={
+
+      userInput : ''
+
+  }
+
+  deleteChrHandler= (i) =>{
+        const text = this.state.userInput.split('');
+        text.splice(i,1);
+        const updatedText = text.join('');
+        this.setState({userInput : updatedText});
+  }
+
+
+  strLngth = (event)=>{
+    
+      this.setState({userInput : event.target.value})
+    
+
+  }
   
-
-state = {
-  showPersons : false,
-persons: [
-    {id : 'segma1',name: 'makore', age :23},
-    {id : 'segma2',name: 'sha1', age :21},
-    {id : 'segma3',name: 'sha2', age :24},
-    {id : 'segma4',name: 'sha3', age :26}
-
-]
-
-
-
-}
-
-
-
-
-deletePersonHandler = (indexP)=>{
-
-  const persons = [...this.state.persons]
-  
-  persons.splice(indexP,1);
-  this.setState({persons: persons});
-
-  
-  ;
- }
-  togglePersonsHandler = ()=>{
-     
-      
-      const doesShow = this.state.showPersons;
-         this.setState({showPersons : !doesShow})
-    }
-  
-    nameChangedHandler = (event, id)=> {
-          const personIndex = this.state.persons.findIndex(p=>{
-            return p.id ===id;
-            
-          });
-
-          const person = {
-            ...this.state.persons[personIndex]
-          };
-
-          //this is the same as lines 51-53
-          //const person = Object.assign({},this.state.persons[personIndex])
-
-          person.name = event.target.value;
-
-          const persons = [...this.state.persons];
-          persons[personIndex]=person;
-
-          this.setState({persons: persons});
-
-    }
- 
- 
- 
-   
- 
-render()
-{
-  const style = {
+   style = {
     backgroundColor : 'white',
     font: 'inherit',
     
@@ -82,38 +41,44 @@ render()
     width : '50%',
     cursor: 'pointer'
   }
-  let persons = null;
-  if (this.state.showPersons) {
-    persons = (
-<div>
-  {this.state.persons.map((person,index)=>{
-    return <Person style={style}
-    click={()=>this.deletePersonHandler(index)}
-      name= {person.name}
-       age ={person.age}
-       key = {person.id}
-       changed={(event)=>this.nameChangedHandler(event, person.id)}
-       />
-  })}
 
-      </div> 
-    );
-    
-  }
+
+
+render()
+{
+const charList =this.state.userInput.split('').map((chrl,i)=>{
+  return <Char character ={chrl}
+                  key = {i}
+                  clicked={()=>this.deleteChrHandler(i)}/>
+})
+  
+  
+
+  
   return (
-    <div className="App">
+    <div className="App" style={this.style}>
 
       <div>
         <h1>Hi im React App</h1>
-      <button onClick={this.togglePersonsHandler}>show all</button>
-      {/*renders the person var*/}
-      {persons}
+      <div>
+        
+      <p>{this.state.userInput}</p>
+        <input type='text'
+         onChange={this.strLngth}
+         value={this.state.userInput}/>
+
+          <Validation inputLngth={this.state.userInput.length}/>
+
+        {charList}
+      </div>
+  
       </div>
       
         
       </div>
   );
     }
+    
 }
 
 export default App;
