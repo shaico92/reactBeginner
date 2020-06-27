@@ -2,6 +2,10 @@ import React,{useState, Component} from 'react';
 //import logo from './logo.svg';
 import './App.css';
 
+//import Radium, {StyleRoot} from '../node_modules/radium';
+
+
+
 import Person from './Person/Person';
 
 
@@ -80,14 +84,23 @@ render()
     marginLeft : '25%',
     marginTop : '5%',
     width : '50%',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    
+  }
+  const forShow = {
+    backgroundColor : 'green',
+    color : 'white',
+    ':hover' : {
+      backgroundColor : 'lightgreen',
+      color : 'black'
+    }
   }
   let persons = null;
   if (this.state.showPersons) {
     persons = (
 <div>
   {this.state.persons.map((person,index)=>{
-    return <Person style={style}
+    return <Person 
     click={()=>this.deletePersonHandler(index)}
       name= {person.name}
        age ={person.age}
@@ -98,20 +111,39 @@ render()
 
       </div> 
     );
+    forShow.backgroundColor = 'red'
+    forShow[':hover'] = {
+      backgroundColor : 'salmon',
+      color : 'black'
+    }
     
   }
+
+  const classes = [];
+  if (this.state.persons.length<=2) {
+    classes.push('red');
+    
+    
+  }
+  if (this.state.persons.length<=1) {
+    classes.push('bold');
+  }
   return (
+
     <div className="App">
 
       <div>
         <h1>Hi im React App</h1>
-      <button onClick={this.togglePersonsHandler}>show all</button>
+        <p className={classes.join(' ')}>This is really working</p>
+      <button style={forShow} onClick={this.togglePersonsHandler}>show all</button>
       {/*renders the person var*/}
       {persons}
       </div>
       
-        
+      
       </div>
+
+      
   );
     }
 }
