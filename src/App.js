@@ -2,14 +2,33 @@ import React,{useState, Component} from 'react';
 //import logo from './logo.svg';
 import './App.css';
 
+
+
+import styleds from 'styled-components';
 //import Radium, {StyleRoot} from '../node_modules/radium';
 
 
 
 import Person from './Person/Person';
 
+// styled components var must start with uppercase
+const StyledBtn = styleds.button`
+
+background-color : ${props=> props.alt ? 'red' : 'green'} ;
+    color : white;
+    font : ingerit;
+    border : 1px solid blue;
+    padding : 8px;
+    &:hover {
+      background-color : ${props=> props.alt ? 'salmon' : 'lightgreen'} ;
+      color : black;
+    }
+
+
+`;
 
 class App extends Component  {
+
   
 
 state = {
@@ -111,11 +130,15 @@ render()
 
       </div> 
     );
-    forShow.backgroundColor = 'red'
-    forShow[':hover'] = {
-      backgroundColor : 'salmon',
-      color : 'black'
-    }
+    
+
+
+    //for radium 
+    // forShow.backgroundColor = 'red'
+    // forShow[':hover'] = {
+    //   backgroundColor : 'salmon',
+    //   color : 'black'
+    // }
     
   }
 
@@ -135,7 +158,7 @@ render()
       <div>
         <h1>Hi im React App</h1>
         <p className={classes.join(' ')}>This is really working</p>
-      <button style={forShow} onClick={this.togglePersonsHandler}>show all</button>
+      <StyledBtn alt={this.state.showPersons}  onClick={this.togglePersonsHandler}>Toggle Persons</StyledBtn>
       {/*renders the person var*/}
       {persons}
       </div>
