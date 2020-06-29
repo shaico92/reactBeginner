@@ -1,8 +1,8 @@
 import React,{useState, Component} from 'react';
 //import logo from './logo.svg';
-import './App.css';
 
 
+import classes from './App.css'
 
 import styleds from 'styled-components';
 //import Radium, {StyleRoot} from '../node_modules/radium';
@@ -142,14 +142,14 @@ render()
     
   }
 
-  const classes = [];
+  const assignedclasses = [];
   if (this.state.persons.length<=2) {
-    classes.push('red');
+    assignedclasses.push('red');
     
     
   }
   if (this.state.persons.length<=1) {
-    classes.push('bold');
+    assignedclasses.push('bold');
   }
   return (
 
@@ -158,7 +158,7 @@ render()
       <div>
         <h1>Hi im React App</h1>
         <p className={classes.join(' ')}>This is really working</p>
-      <StyledBtn alt={this.state.showPersons}  onClick={this.togglePersonsHandler}>Toggle Persons</StyledBtn>
+      <button className={classes.Button} alt={this.state.showPersons}  onClick={this.togglePersonsHandler}>Toggle Persons</button>
       {/*renders the person var*/}
       {persons}
       </div>
