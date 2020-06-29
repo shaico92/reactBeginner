@@ -1,10 +1,10 @@
 import React,{useState, Component} from 'react';
 //import logo from './logo.svg';
-import './App.css';
+
 
 //import Radium, {StyleRoot} from '../node_modules/radium';
 
-
+import classesToUse  from './App.css'
 
 import Person from './Person/Person';
 
@@ -135,7 +135,7 @@ render()
       <div>
         <h1>Hi im React App</h1>
         <p className={classes.join(' ')}>This is really working</p>
-      <button style={forShow} onClick={this.togglePersonsHandler}>show all</button>
+      <button className={classesToUse.Button} onClick={this.togglePersonsHandler}>show all</button>
       {/*renders the person var*/}
       {persons}
       </div>
