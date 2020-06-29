@@ -2,9 +2,12 @@ import React,{useState, Component} from 'react';
 //import logo from './logo.svg';
 
 
+
 //import Radium, {StyleRoot} from '../node_modules/radium';
 
 import classesToUse  from './App.css'
+
+
 
 import Person from './Person/Person';
 
@@ -71,9 +74,10 @@ deletePersonHandler = (indexP)=>{
  
  
    
- 
+  
 render()
 {
+  let BtnClasses = [classesToUse.Button];
   const style = {
     backgroundColor : 'white',
     font: 'inherit',
@@ -111,31 +115,28 @@ render()
 
       </div> 
     );
-    forShow.backgroundColor = 'red'
-    forShow[':hover'] = {
-      backgroundColor : 'salmon',
-      color : 'black'
-    }
+    
+    BtnClasses.push(classesToUse.Red);
     
   }
 
   const classes = [];
   if (this.state.persons.length<=2) {
-    classes.push('red');
+    classes.push(classesToUse.red);
     
     
   }
   if (this.state.persons.length<=1) {
-    classes.push('bold');
+    classes.push(classesToUse.bold);
   }
   return (
 
-    <div className="App">
+    <div className={classesToUse.App}>
 
       <div>
         <h1>Hi im React App</h1>
         <p className={classes.join(' ')}>This is really working</p>
-      <button className={classesToUse.Button} onClick={this.togglePersonsHandler}>show all</button>
+      <button className={BtnClasses.join(' ')} onClick={this.togglePersonsHandler}>Toggle Persons</button>
       {/*renders the person var*/}
       {persons}
       </div>
