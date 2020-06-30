@@ -1,7 +1,7 @@
-import React,{useState, Component} from 'react';
+//import React,{useState, Component} from 'react';
 //import logo from './logo.svg';
 
-
+import React,{Component} from 'react';
 
 //import Radium, {StyleRoot} from '../node_modules/radium';
 
@@ -13,7 +13,7 @@ import Persons from '../components/Persons/Persons';
 
 import Cockpit from '../components/Cockpit/Cockpit'
 
-import ErrorBounday from '../ErrorBoundry/ErrorBoundary'
+//import ErrorBounday from '../ErrorBoundry/ErrorBoundary'
 
 class App extends Component  {
   

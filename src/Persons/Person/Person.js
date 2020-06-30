@@ -5,7 +5,7 @@ import personStyles from './Person.css'
 
 //import Styled from 'styled-components'; 
 
-import xBtn from '../../../assets/xButton.png'
+import xBtn from '../xButton.png'
 /*
 import styled from 'styled-components';
 const StyledDiv = Styled.div`
@@ -30,12 +30,6 @@ cursor: pointer;
 `;
 */
 const Person = (props)=>{
-
-
-    
-     
-      
-   
 
 
 
