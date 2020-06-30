@@ -9,9 +9,11 @@ import classesToUse  from './App.css'
 
 
 
-import Person from './Person/Person';
+import Persons from '../components/Persons/Persons';
 
-import ErrorBounday from './ErrorBoundry/ErrorBoundary'
+import Cockpit from '../components/Cockpit/Cockpit'
+
+import ErrorBounday from '../ErrorBoundry/ErrorBoundary'
 
 class App extends Component  {
   
@@ -78,69 +80,42 @@ deletePersonHandler = (indexP)=>{
   
 render()
 {
-  let BtnClasses = [classesToUse.Button];
-  const style = {
-    backgroundColor : 'white',
-    font: 'inherit',
-    
-    boxShadow: '0 1px 2px', 
-    border : '1px solid blue',
-    padding : '8px',
-    marginLeft : '25%',
-    marginTop : '5%',
-    width : '50%',
-    cursor: 'pointer',
-    
-  }
-  const forShow = {
-    backgroundColor : 'green',
-    color : 'white',
-    ':hover' : {
-      backgroundColor : 'lightgreen',
-      color : 'black'
-    }
-  }
+  
+  
+  
   let persons = null;
   if (this.state.showPersons) {
     persons = (
-<div>
-  {this.state.persons.map((person,index)=>{
-    return <Person 
-    click={()=>this.deletePersonHandler(index)}
-      name= {person.name}
-       age ={person.age}
-       key = {person.id}
-       changed={(event)=>this.nameChangedHandler(event, person.id)}
-       />
-  })}
 
-      </div> 
+<Persons
+
+  persons={this.state.persons}
+  clicked={this.deletePersonHandler}
+  changed={this.nameChangedHandler}
+
+
+/>
+    
     );
     
-    BtnClasses.push(classesToUse.Red);
+    
     
   }
 
-  const classes = [];
-  if (this.state.persons.length<=2) {
-    classes.push(classesToUse.red);
-    
-    
-  }
-  if (this.state.persons.length<=1) {
-    classes.push(classesToUse.bold);
-  }
+
   return (
 
     <div className={classesToUse.App}>
 
-      <div>
-        <h1>Hi im React App</h1>
-        <p className={classes.join(' ')}>This is really working</p>
-      <button className={BtnClasses.join(' ')} onClick={this.togglePersonsHandler}>Toggle Persons</button>
+      
+      <Cockpit 
+      showPersons={this.state.showPersons}
+      persons={this.state.persons}
+      clicked={this.togglePersonsHandler}/>
       {/*renders the person var*/}
       {persons}
-      </div>
+      
+      
       
       
       </div>

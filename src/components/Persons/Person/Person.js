@@ -5,7 +5,7 @@ import personStyles from './Person.css'
 
 //import Styled from 'styled-components'; 
 
-import xBtn from '../xButton.png'
+import xBtn from '../../../assets/xButton.png'
 /*
 import styled from 'styled-components';
 const StyledDiv = Styled.div`
@@ -44,13 +44,13 @@ const Person = (props)=>{
   }
 
 
-  
+
     return(
 
 
       //<div className='Person' style={style} >
       <div className={personStyles.Person}>
-        <img onClick={props.click} className={personStyles.btn} src={xBtn}></img>
+        <img onClick={props.click} alt={''} className={personStyles.btn} src={xBtn}></img>
     <p  >  i am {props.name} and i  am {props.age} years old</p>
 
     <p>{props.children}</p>
