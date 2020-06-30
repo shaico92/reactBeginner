@@ -31,7 +31,7 @@ cursor: pointer;
 */
 const Person = (props)=>{
 
-  const style = {
+  const styale = {
  
     '@media (min-width: 500px)':{
       width : '50%',
@@ -44,7 +44,9 @@ const Person = (props)=>{
   }
 
 
+  
     return(
+
 
       //<div className='Person' style={style} >
       <div className={personStyles.Person}>

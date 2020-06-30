@@ -11,6 +11,7 @@ import classesToUse  from './App.css'
 
 import Person from './Person/Person';
 
+import ErrorBounday from './ErrorBoundry/ErrorBoundary'
 
 class App extends Component  {
   
