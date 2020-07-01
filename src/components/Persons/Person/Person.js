@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{Component} from 'react';
 //import Radium  from 'radium';
 
 import personStyles from './Person.css'
@@ -29,34 +29,31 @@ cursor: pointer;
 
 `;
 */
-const Person = (props)=>{
+class Person extends Component{
+render(){
+  console.log('[Person.js] rendering');
+  return(
+
+      
+    //<div className='Person' style={style} >
+    <div className={personStyles.Person}>
+      <img onClick={this.props.click} alt={''} className={personStyles.btn} src={xBtn}></img>
+  <p  >  i am {this.props.name} and i  am {this.props.age} years old</p>
+
+  <p>{this.props.children}</p>
+  <input type='text' onChange={this.props.changed} value={this.props.name}></input>
 
 
     
-     
-      
-   
 
 
+    </div>
 
-    return(
+  );
+}
 
-
-      //<div className='Person' style={style} >
-      <div className={personStyles.Person}>
-        <img onClick={props.click} alt={''} className={personStyles.btn} src={xBtn}></img>
-    <p  >  i am {props.name} and i  am {props.age} years old</p>
-
-    <p>{props.children}</p>
-    <input type='text' onChange={props.changed} value={props.name}></input>
-
-
-      
-
-
-      </div>
-
-    );
+  
+    
 
 
 
