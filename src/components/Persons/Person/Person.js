@@ -15,7 +15,7 @@ font: inherit;
 box-shadow: 0 1px 2px;
 border: 1px solid blue;
 padding:  8px;
-margin-left: 25%;
+margin-left: 25%;s
 margin-top: 5%;
 width: 60%;
 cursor: pointer;
