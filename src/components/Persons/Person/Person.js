@@ -5,6 +5,9 @@ import personStyles from './Person.css'
 
 //import Styled from 'styled-components'; 
 
+
+import Aux from '../../../hoc/Auxillary'
+
 import xBtn from '../../../assets/xButton.png'
 /*
 import styled from 'styled-components';
@@ -36,6 +39,9 @@ render(){
 
       
     //<div className='Person' style={style} >
+    // <Aux>
+      
+    // </Aux>
     <div className={personStyles.Person}>
       <img onClick={this.props.click} alt={''} className={personStyles.btn} src={xBtn}></img>
   <p  >  i am {this.props.name} and i  am {this.props.age} years old</p>
