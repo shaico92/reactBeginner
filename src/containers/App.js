@@ -7,12 +7,15 @@ import React,{Component} from 'react';
 
 import classesToUse  from './App.css'
 
+import WithClass from '../hoc/WithClass'
 
+import Aux from '../hoc/Auxillary'
 
 import Persons from '../components/Persons/Persons';
 
 import Cockpit from '../components/Cockpit/Cockpit'
 
+import AuthContext from '../context/auth-context';
 //import ErrorBounday from '../ErrorBoundry/ErrorBoundary'
 
 class App extends Component  {   
@@ -27,6 +30,8 @@ class App extends Component  {
 state = {
   showPersons : false,
   showCockpit : true,
+  changedCounte : 0,
+  authenticated : false,
 persons: [
     {id : 'segma1',name: 'makore', age :23},
     {id : 'segma2',name: 'sha1', age :21},
@@ -73,6 +78,13 @@ deletePersonHandler = (indexP)=>{
   
   ;
  }
+
+
+loginHandler=()=>{
+this.setState({authenticated : true});
+}
+
+
   togglePersonsHandler = ()=>{
      
       
@@ -98,9 +110,16 @@ deletePersonHandler = (indexP)=>{
           const persons = [...this.state.persons];
           persons[personIndex]=person;
 
-          this.setState({persons: persons});
+          this.setState((prevState,props)=>{
+            
+              return{
+                persons: persons,
+             changedCounte : prevState.changedCounte+1
+            };
+          
+            });
 
-    }
+    };
  
  
  
@@ -120,7 +139,7 @@ console.log('[App.js] render');
   persons={this.state.persons}
   clicked={this.deletePersonHandler}
   changed={this.nameChangedHandler}
-
+      isAuthenticated ={this.state.authenticated}
 
 />
     
@@ -133,17 +152,25 @@ console.log('[App.js] render');
 
   return (
 
-    <div className={classesToUse.App}>
-
+    //<WithClass classes={classesToUse.App}>
+    <Aux>
       <button onClick={()=>{
         this.setState({showCockpit: false})
       }}>Remove Cockpit
       </button>
+         <AuthContext.Provider value={{
+           authenticated : this.state.authenticated,
+           login : this.loginHandler
+
+         }}>
+
+         s
       {this.state.showCockpit ? (
       <Cockpit 
       showPersons={this.state.showPersons}
       personsLength={this.state.persons.length}
       clicked={this.togglePersonsHandler}
+      
       />
       ):null}
 
@@ -151,16 +178,16 @@ console.log('[App.js] render');
       {/*renders the person var*/}
       {persons}
       
+      </AuthContext.Provider>
       
       
-      
-      </div>
+      </Aux>
 
       
   );
     }
 }
 
-export default App;
+export default WithClass(App, classesToUse.App);
 
 
